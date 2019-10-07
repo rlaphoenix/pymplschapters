@@ -17,6 +17,9 @@ setup(
     install_requires=[
         'lxml>=4.4.1'
     ],
+    entry_points={
+        'console_scripts': ['pymplschapters=pymplschapters.__init__:main'],
+    },
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
