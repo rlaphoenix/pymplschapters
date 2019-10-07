@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="pymplschapters",
-    version="1.0.1",
+    version="1.0.2",
     author="PRAGMA",
     author_email="pragma.exe@gmail.com",
     description="Extract chapters from a blu-ray mpls to a matroska recognized xml file",
