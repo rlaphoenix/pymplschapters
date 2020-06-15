@@ -1,4 +1,5 @@
 # pymplschapters
+
 Extract chapters from a blu-ray mpls to a matroska recognized xml file
 
 ## Installation
@@ -9,7 +10,7 @@ Extract chapters from a blu-ray mpls to a matroska recognized xml file
 
     pymplschapters -p "C:/A Path/To/The/Playlist.mpls"
 
-It will place any found chapters next to the input playlist file.
+It will place any found chapters next to the input playlist file or to a specified directory with `-d`.
 
 ## Credit
 

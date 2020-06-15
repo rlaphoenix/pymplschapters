@@ -11,23 +11,33 @@ from lxml import etree
 # --------------------------------
 def main():
     ArgParser = argparse.ArgumentParser()
-    ArgParser.add_argument('-p', '--playlist', help='Input path to an MPLS playlist', required=True)
+    ArgParser.add_argument(
+        "-p", "--playlist", help="Input path to an MPLS playlist", required=True
+    )
+    ArgParser.add_argument(
+        "-d",
+        "--directory",
+        help="Specify an output directory, by default it will save next to the playlist.",
+        required=False
+    )
     args = ArgParser.parse_args()
 
     def get_chapters(mpls):
         header, _ = MPLS.load_header(mpls)
 
-        mpls.seek(header['PlayListStartAddress'], os.SEEK_SET)
+        mpls.seek(header["PlayListStartAddress"], os.SEEK_SET)
         pl, _ = MPLS.load_PlayList(mpls)
-        pl = pl['PlayItems']
+        pl = pl["PlayItems"]
 
-        mpls.seek(header['PlayListMarkStartAddress'], os.SEEK_SET)
+        mpls.seek(header["PlayListMarkStartAddress"], os.SEEK_SET)
         marks, _ = MPLS.load_PlayListMark(mpls)
         marks = marks["PlayListMarks"]
 
         for i, playItem in enumerate(pl):
             chapters = []
-            playItemMarks = [x for x in marks if x["MarkType"] == 1 and x["RefToPlayItemID"] == i]
+            playItemMarks = [
+                x for x in marks if x["MarkType"] == 1 and x["RefToPlayItemID"] == i
+            ]
             offset = playItemMarks[0]["MarkTimeStamp"]
             if playItem["INTime"] < offset:
                 offset = playItem["INTime"]
@@ -35,14 +45,14 @@ def main():
                 duration = ((mark["MarkTimeStamp"] - offset) / 45000) * 1000
                 timespan = str(datetime.timedelta(milliseconds=duration))
                 if timespan == "0:00:00":
-                    timespan = timespan + ".000000"
+                    timespan = f"{timespan}.000000"
                 if timespan.startswith("0:"):
-                    timespan = "0" + timespan
+                    timespan = f"0{timespan}"
                 chapters.append({
-                    "clip": playItem["ClipInformationFileName"] + "." + playItem["ClipCodecIdentifier"].lower(),
-                    "number": n+1,
+                    "clip": f"{playItem['ClipInformationFileName']}.{playItem['ClipCodecIdentifier'].lower()}",
+                    "number": n + 1,
                     "duration": duration,
-                    "timespan": timespan
+                    "timespan": timespan,
                 })
             yield chapters
 
@@ -61,7 +71,7 @@ def main():
                 ChapterAtom = etree.SubElement(EditionEntry, "ChapterAtom")
                 ChapterDisplay = etree.SubElement(ChapterAtom, "ChapterDisplay")
                 ChapterString = etree.SubElement(ChapterDisplay, "ChapterString")
-                ChapterString.text = "Chapter " + str(chapter["number"]).zfill(2)
+                ChapterString.text = f"Chapter {str(chapter['number']).zfill(2)}"
                 ChapterLanguage = etree.SubElement(ChapterDisplay, "ChapterLanguage")
                 ChapterLanguage.text = "eng"
                 ChapterTimeStart = etree.SubElement(ChapterAtom, "ChapterTimeStart")
@@ -71,7 +81,18 @@ def main():
                 ChapterFlagEnabled = etree.SubElement(ChapterAtom, "ChapterFlagEnabled")
                 ChapterFlagEnabled.text = "1"
             clip = file_with_chapter[0]["clip"]
-            with open(os.path.join(os.path.dirname(args.playlist), os.path.splitext(os.path.basename(args.playlist))[0] + "_" + clip.split('.')[0] + ".xml"), 'wb') as f:
-                f.write(etree.tostring(Chapters, encoding='utf-8', doctype="<!DOCTYPE Tags SYSTEM \"matroskatags.dtd\">", xml_declaration=True, pretty_print=True))
+            with open(os.path.join(
+                args.directory or os.path.dirname(args.playlist),
+                f"{os.path.splitext(os.path.basename(args.playlist))[0]}_{clip.split('.')[0]}.xml"
+            ), "wb") as f:
+                f.write(
+                    etree.tostring(
+                        Chapters,
+                        encoding="utf-8",
+                        doctype='<!DOCTYPE Tags SYSTEM "matroskatags.dtd">',
+                        xml_declaration=True,
+                        pretty_print=True,
+                    )
+                )
             print("Extracted chapters for " + clip)
         print("Finished...")
