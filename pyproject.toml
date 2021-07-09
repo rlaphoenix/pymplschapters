@@ -1,0 +1,32 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "pymplschapters"
+version = "1.0.4"
+description = "Extract chapters from a Blu-ray .mpls to a Matroska recognized XML file."
+license = "MIT"
+authors = ["PHOENiX <rlaphoenix@pm.me>"]
+maintainers = ["PHOENiX <rlaphoenix@pm.me>"]
+readme = "README.md"
+homepage = "https://github.com/rlaphoenix/pymplschapters"
+repository = "https://github.com/rlaphoenix/pymplschapters"
+keywords = ["mpls", "blu-ray", "playlist", "chapters", "matroska"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia"
+]
+include = ["LICENSE", "README.md"]
+
+[tool.poetry.dependencies]
+python = ">=3.6,<4.0"
+lxml = "^4.4.1"
+
+[tool.poetry.scripts]
+pymplschapters = "pymplschapters.__init__:main"
