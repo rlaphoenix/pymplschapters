@@ -1,5 +1,11 @@
 # pymplschapters
 
+[![License](https://img.shields.io/github/license/rlaphoenix/pymplschapters)](https://github.com/rlaphoenix/pymplschapters/blob/master/LICENSE)
+[![Python versions](https://img.shields.io/pypi/pyversions/pymplschapters)](https://pypi.python.org/pypi/pymplschapters)
+[![PyPI version](https://img.shields.io/pypi/v/pymplschapters)](https://pypi.python.org/pypi/pymplschapters)
+[![GitHub issues](https://img.shields.io/github/issues/rlaphoenix/pymplschapters)](https://github.com/rlaphoenix/pymplschapters/issues)
+[![DeepSource issues](https://deepsource.io/gh/rlaphoenix/pymplschapters.svg/?label=active+issues)](https://deepsource.io/gh/rlaphoenix/pymplschapters)
+
 Extract chapters from a Blu-ray .mpls to a Matroska recognized XML file.
 
 ## Installation
