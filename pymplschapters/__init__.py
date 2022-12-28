@@ -66,11 +66,17 @@ def get_chapters(f):
     playlist_marks = playlist_marks["PlayListMarks"]
 
     for i, play_item in enumerate(playlist["PlayItems"]):
+        filename = f"{play_item['ClipInformationFileName']}.{play_item['ClipCodecIdentifier'].lower()}"
+
         play_item_marks = [
             x
             for x in playlist_marks
             if x["MarkType"] == 1 and x["RefToPlayItemID"] == i
         ]
+        if not play_item_marks:
+            # no chapters for this play item?
+            print("No chapters in Playlist for", filename)
+            continue
 
         offset = play_item_marks[0]["MarkTimeStamp"]
         if play_item["INTime"] < offset:
@@ -85,7 +91,7 @@ def get_chapters(f):
             if "." not in timespan:
                 timespan = f"{timespan}.000000"
             chapters.append({
-                "clip": f"{play_item['ClipInformationFileName']}.{play_item['ClipCodecIdentifier'].lower()}",
+                "clip": filename,
                 "number": n + 1,
                 "duration": duration,
                 "timespan": timespan,
