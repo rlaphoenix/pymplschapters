@@ -1,7 +1,7 @@
 # pymplschapters
 
 [![License](https://img.shields.io/github/license/rlaphoenix/pymplschapters)](https://github.com/rlaphoenix/pymplschapters/blob/master/LICENSE)
-[![Python version tests](https://img.shields.io/github/workflow/status/rlaphoenix/pymplschapters/Build)](https://github.com/rlaphoenix/pymplschapters/releases)
+[![Build status](https://github.com/rlaphoenix/pymplschapters/actions/workflows/ci.yml/badge.svg)](https://github.com/rlaphoenix/pymplschapters/actions/workflows/ci.yml)
 [![Python versions](https://img.shields.io/pypi/pyversions/pymplschapters)](https://pypi.python.org/pypi/pymplschapters)
 [![PyPI version](https://img.shields.io/pypi/v/pymplschapters)](https://pypi.python.org/pypi/pymplschapters)
 [![GitHub issues](https://img.shields.io/github/issues/rlaphoenix/pymplschapters)](https://github.com/rlaphoenix/pymplschapters/issues)
