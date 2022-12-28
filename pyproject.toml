@@ -7,8 +7,7 @@ name = "pymplschapters"
 version = "1.0.4"
 description = "Extract chapters from a Blu-ray .mpls to a Matroska recognized XML file."
 license = "MIT"
-authors = ["PHOENiX <rlaphoenix@pm.me>"]
-maintainers = ["PHOENiX <rlaphoenix@pm.me>"]
+authors = ["rlaphoenix <rlaphoenix@pm.me>"]
 readme = "README.md"
 homepage = "https://github.com/rlaphoenix/pymplschapters"
 repository = "https://github.com/rlaphoenix/pymplschapters"
@@ -22,7 +21,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Multimedia"
 ]
-include = ["LICENSE", "README.md"]
 
 [tool.poetry.dependencies]
 python = ">=3.6,<4.0"
