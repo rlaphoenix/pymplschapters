@@ -14,8 +14,8 @@ source = ["Cython (>=0.29.7)"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = ">=3.6,<4.0"
-content-hash = "ff67751f1f722d37a6fce7c3ff7806832c426c1a6360226fde030c30da7e0cb7"
+python-versions = ">=3.7,<3.11"
+content-hash = "906ad8548df260bfcf6c635f28f90a50e5b3d256e2e6fecf3ad67f615d54c571"
 
 [metadata.files]
 lxml = [
